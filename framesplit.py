@@ -1,7 +1,8 @@
 #basic method for separating a video into frames
-
+from os import mkdir
 import cv2
 vidcap = cv2.VideoCapture('big_and_bootiful.mp4')
+mkdir('big_and_bootiful\\')
 success,image = vidcap.read()
 count = 0
 while success:
