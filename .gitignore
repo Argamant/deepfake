@@ -3,3 +3,6 @@ big_and_bootiful/*
 deepfake.pyproj
 resnet50.zip
 bnb.pkl
+keras-video-classification.zip
+feature_extraction.ipynb
+.ipynb_checkpoints/
