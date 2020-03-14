@@ -6,3 +6,6 @@ bnb.pkl
 keras-video-classification.zip
 feature_extraction.ipynb
 .ipynb_checkpoints/
+demo/movies/
+*.mp4
+*.model
