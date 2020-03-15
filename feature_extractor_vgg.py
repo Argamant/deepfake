@@ -12,7 +12,7 @@ from pickle import dump
 import pandas as pd
 
 # load an image from file
-image = load_img('big_and_bootiful/frame0.jpg', target_size=(224, 224))
+image = load_img('C:\\Users\\rugge\\source\\repos\\deepfake\\deepfake\\demo\\test\\real\\uazbhwyysx00000008.jpg', target_size=(224, 224))
 # convert the image pixels to a numpy array
 image = img_to_array(image)
 # reshape data for the model
