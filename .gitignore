@@ -1,11 +1,14 @@
 data/*
-big_and_bootiful/*
 deepfake.pyproj
 resnet50.zip
-bnb.pkl
-keras-video-classification.zip
 feature_extraction.ipynb
 .ipynb_checkpoints/
 demo/movies/
 *.mp4
 *.model
+activation_functions.png
+deepfake_todo.txt
+scratch.ipynb
+sort_real_fake.py
+framesplit_dirty.py
+parse_training_data.py
