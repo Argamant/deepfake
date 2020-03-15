@@ -13,7 +13,19 @@ import matplotlib.pyplot as plt
 conv_base = VGG16(weights = 'imagenet',
                     include_top = False,
                     input_shape= (150,150,3))
-base_dir = 'C:\\Users\\rugge\\source\\repos\\deepfake\\deepfake\\data'
+"""
+conv_base.trainable = True
+
+set_trainable = False
+for layer in conv_base.layers:
+    if layer.name == 'block_conv1':
+        set_trainable = True
+    if set_trainable:
+        layer.trainable = True
+    else:
+        layer.trainable = False
+"""
+base_dir = 'G:\\deepfake\\data'
 train_dir = os.path.join(base_dir, 'train')
 #what is the validation dir?
 validation_dir = os.path.join(base_dir, 'validation')
@@ -48,8 +60,6 @@ train_features = np.reshape(train_features, (2000, 4 * 4 * 512))
 validation_features = np.reshape(vaidation_features, (1000, 4,4,512))
 test_features = np.reshape(test_features, (1000, 4 *4 *512))
 
-
-
 model = models.Sequential()
 model.add(layers.Dense(256, activation='relu', input_dim= 4*4*512))
 model.add(layers.Dropout(0.5))
@@ -63,7 +73,7 @@ history = model.fit(train_features, train_labels,
                     epochs = 30, 
                     batch_size = 20,
                     validation_data= (validation_features, validation_labels))
-                    
+model.save('vgg16_model.h5')
 #plotting the results
 
 acc = history.history['acc']
