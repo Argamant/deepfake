@@ -29,4 +29,3 @@ def crop_face_save_jpg(imagePath):
       faceImagePath = re.sub(r'(.*?).jpg$', r"\1_face.jpg", imagePath, flags=re.DOTALL)
       cv2.imwrite(imagePath, img)
 
-crop_face_save_jpg("test.jpg")
