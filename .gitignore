@@ -9,3 +9,5 @@ feature_extraction.ipynb
 demo/movies/
 *.mp4
 *.model
+*.jpg
+__pycache__
