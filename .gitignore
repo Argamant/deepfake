@@ -13,3 +13,6 @@ sort_real_fake.py
 framesplit_dirty.py
 parse_training_data.py
 keras-video-classification/*
+*.jpg
+*.jpeg
+*.json
