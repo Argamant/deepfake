@@ -9,6 +9,16 @@ import os
 import numpy as np 
 import matplotlib.pyplot as plt
 
+import tensorflow as tf
+from keras.backend.tensorflow_backend import set_session
+physical_devices = tf.config.list_physical_devices('GPU') 
+try: 
+  tf.config.experimental.set_memory_growth(physical_devices[0], True) 
+except: 
+  # Invalid device or cannot modify virtual devices once initialized. 
+  pass # dynamically grow GPU memory 
+
+
 #feature extraction with a pretrained convolutional base.
 conv_base = VGG16(weights = 'imagenet',
                     include_top = False,
@@ -25,14 +35,17 @@ for layer in conv_base.layers:
     else:
         layer.trainable = False
 """
-base_dir = 'G:\\deepfake\\data'
+
+#base_dir = 'C:\\Users\\rugge\\source\\repos\\deepfake\\deepfake\\demo'
+base_dir = 'G:\\deepfake'
+
 train_dir = os.path.join(base_dir, 'train')
 #what is the validation dir?
-validation_dir = os.path.join(base_dir, 'validation')
-test_dir = os.path.join(base_dir, 'test')
+validation_dir = os.path.join(base_dir, 'test')
+#test_dir = os.path.join(base_dir, 'test')
 
 datagen = ImageDataGenerator(rescale = 1./255)
-batch_size = 20
+batch_size = 1
 
 def extract_features(directory, sample_count):
     features = np.zeros(shape=(sample_count, 4,4,512))
@@ -54,11 +67,11 @@ def extract_features(directory, sample_count):
 
 train_features, train_labels = extract_features(train_dir, 2000)
 validation_features, validation_labels = extract_features(validation_dir, 1000)
-test_features, test_labels = extract_features(test_dir, 1000)
+#test_features, test_labels = extract_features(test_dir, 1000)
 
 train_features = np.reshape(train_features, (2000, 4 * 4 * 512))
 validation_features = np.reshape(vaidation_features, (1000, 4,4,512))
-test_features = np.reshape(test_features, (1000, 4 *4 *512))
+#test_features = np.reshape(test_features, (1000, 4 *4 *512))
 
 model = models.Sequential()
 model.add(layers.Dense(256, activation='relu', input_dim= 4*4*512))
@@ -70,8 +83,8 @@ model.compile(optimizer = optimizers.RMSprop(lr=2e-5),
                 metrics=['acc'])
     
 history = model.fit(train_features, train_labels,
-                    epochs = 30, 
-                    batch_size = 20,
+                    epochs = 1, 
+                    batch_size = 1,
                     validation_data= (validation_features, validation_labels))
 model.save('vgg16_model.h5')
 #plotting the results
