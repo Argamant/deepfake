@@ -22,3 +22,4 @@ vgg16_model/*
 chollet/vgg16_model.h5
 demo/bnb.pkl
 bnb.pkl
+*.csv
