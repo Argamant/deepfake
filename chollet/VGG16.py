@@ -71,6 +71,7 @@ train_features, train_labels = extract_features(train_dir, numTrainImages)
 validation_features, validation_labels = extract_features(validation_dir, numTestImages)
 
 train_features = np.reshape(train_features, (numTrainImages, 4 * 4 * 512))
+print(validation_features)
 validation_features = np.reshape(validation_features, (numTestImages, 4,4,512))
 
 model = models.Sequential()
@@ -83,22 +84,21 @@ model.compile(optimizer = optimizers.RMSprop(lr=2e-5),
                 metrics=['acc'])
    
 history = model.fit(train_features, train_labels,
-                    epochs = 1, 
-                    batch_size = 1,
-                    validation_data= (validation_features, validation_labels))
+                    epochs = 5, 
+                    batch_size = 20)
 model.save('vgg16_model.h5')
 #plotting the results
 
 acc = history.history['acc']
-val_acc = history.history['val_acc']
+#val_acc = history.history['val_acc']
 loss = history.history['loss']
-val_loss = history.history['val_loss']
+#val_loss = history.history['val_loss']
 
 epochs = range(1, len(acc) +1)
 
 plt.plot(epochs, acc, 'bo', label = 'Training acc')
-plt.plot(epochs, val_loss, 'b', label = 'Validation loss')
-plot.title('training and validation loss')
+#plt.plot(epochs, val_loss, 'b', label = 'Validation loss')
+plt.title('training and validation loss')
 plt.legend()
 
 plt.show()
