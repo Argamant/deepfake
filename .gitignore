@@ -18,3 +18,7 @@ keras-video-classification/*
 *.jpg
 *.jpeg
 *.json
+vgg16_model/*
+chollet/vgg16_model.h5
+demo/bnb.pkl
+bnb.pkl
